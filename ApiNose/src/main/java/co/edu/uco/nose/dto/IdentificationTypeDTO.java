@@ -2,22 +2,19 @@ package co.edu.uco.nose.dto;
 
 import java.util.UUID;
 
-import co.edu.uco.nose.crosscuting.helper.TextHelper;
-import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
-
 public final class IdentificationTypeDTO {
 	
 	private UUID id;
 	private String name;
 	
 	public IdentificationTypeDTO() {
-		setId(UUIDHelper.getUUIDHelper().getDefault());
-		setName(TextHelper.getDefault());
+		this.id = null;
+		this.name = "";
 	}
 	
 	public IdentificationTypeDTO(final UUID id, final String name) {
-		setId(id);
-		setName(name);
+		this.id = id;
+		this.name = name;
 	}
 
 	public UUID getId() {
@@ -25,7 +22,7 @@ public final class IdentificationTypeDTO {
 	}
 
 	public void setId(UUID id) {
-		this.id = UUIDHelper.getUUIDHelper().getDefault(id);
+		this.id = id;
 	}
 
 	public String getName() {
@@ -33,7 +30,7 @@ public final class IdentificationTypeDTO {
 	}
 
 	public void setName(String name) {
-		this.name = TextHelper.getDefault(name);
+		this.name = name;
 	}
 
 }
