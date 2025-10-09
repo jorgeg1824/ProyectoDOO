@@ -46,8 +46,9 @@ public final class DepartmentEntity {
 	public CountryEntity getCountry() {
 		return country;
 	}
-
+	
 	public void setCountry(final CountryEntity country) {
 		this.country = country;
 	}
+	
 }

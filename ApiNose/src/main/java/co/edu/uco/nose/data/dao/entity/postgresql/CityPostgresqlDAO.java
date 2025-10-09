@@ -1,13 +1,19 @@
 package co.edu.uco.nose.data.dao.entity.postgresql;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.UUID;
 
 import co.edu.uco.nose.data.dao.entity.CityDAO;
+import co.edu.uco.nose.data.dao.entity.SqlConnection;
 import co.edu.uco.nose.entity.CityEntity;
 
-public final class CityPostgresqlDAO implements CityDAO {
-
+public final class CityPostgresqlDAO extends SqlConnection implements CityDAO {
+	
+	public CityPostgresqlDAO(final Connection connection) {
+		super(connection);
+	}
+	
 	@Override
 	public List<CityEntity> findAll() {
 		// TODO Auto-generated method stub

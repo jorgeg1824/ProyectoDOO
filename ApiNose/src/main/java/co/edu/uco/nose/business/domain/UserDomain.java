@@ -12,7 +12,7 @@ public final class UserDomain extends Domain {
 	private IdentificationTypeDomain identificationType;
 	private String identificationNumber;
 	private String firstName;
-	private String midedleName;
+	private String middleName;
 	private String lastName;
 	private String secondLastName;
 	private CityDomain residenceCity;
@@ -26,7 +26,7 @@ public final class UserDomain extends Domain {
 		setIdentificationType(new IdentificationTypeDomain());
 		setIdentificationNumber(TextHelper.getDefault());
 		setFirstName(TextHelper.getDefault());
-		setMidedleName(TextHelper.getDefault());
+		setMiddleName(TextHelper.getDefault());
 		setLastName(TextHelper.getDefault());
 		setSecondLastName(TextHelper.getDefault());
 		setResidenceCity(new CityDomain());
@@ -41,7 +41,7 @@ public final class UserDomain extends Domain {
 		setIdentificationType(new IdentificationTypeDomain());
 		setIdentificationNumber(TextHelper.getDefault());
 		setFirstName(TextHelper.getDefault());
-		setMidedleName(TextHelper.getDefault());
+		setMiddleName(TextHelper.getDefault());
 		setLastName(TextHelper.getDefault());
 		setSecondLastName(TextHelper.getDefault());
 		setResidenceCity(new CityDomain());
@@ -55,7 +55,7 @@ public final class UserDomain extends Domain {
 					  final IdentificationTypeDomain identificationType, 
 					  final String identificationNumber, 
 					  final String firstName, 
-					  final String midedleName, 
+					  final String middleName, 
 					  final String lastName, 
 					  final String secondLastName, 
 					  final CityDomain residenceCity, 
@@ -67,7 +67,7 @@ public final class UserDomain extends Domain {
 		setIdentificationType(identificationType);
 		setIdentificationNumber(identificationNumber);
 		setFirstName(firstName);
-		setMidedleName(midedleName);
+		setMiddleName(middleName);
 		setLastName(lastName);
 		setSecondLastName(secondLastName);
 		setResidenceCity(residenceCity);
@@ -101,12 +101,12 @@ public final class UserDomain extends Domain {
 		this.firstName = TextHelper.getDefaultWithTrim(firstName);
 	}
 
-	public String getMidedleName() {
-		return midedleName;
+	public String getMiddleName() {
+		return middleName;
 	}
 
-	public void setMidedleName(String midedleName) {
-		this.midedleName = TextHelper.getDefaultWithTrim(midedleName);
+	public void setMiddleName(String midedleName) {
+		this.middleName = TextHelper.getDefaultWithTrim(midedleName);
 	}
 
 	public String getLastName() {
