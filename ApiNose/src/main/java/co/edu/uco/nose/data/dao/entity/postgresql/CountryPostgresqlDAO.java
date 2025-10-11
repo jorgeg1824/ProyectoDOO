@@ -1,12 +1,18 @@
 package co.edu.uco.nose.data.dao.entity.postgresql;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.UUID;
 
 import co.edu.uco.nose.data.dao.entity.CountryDAO;
+import co.edu.uco.nose.data.dao.entity.SqlConnection;
 import co.edu.uco.nose.entity.CountryEntity;
 
-public final class CountryPostgresqlDAO implements CountryDAO {
+public final class CountryPostgresqlDAO extends SqlConnection implements CountryDAO {
+	
+	public CountryPostgresqlDAO(final Connection connection) {
+		super(connection);
+	}
 
 	@Override
 	public List<CountryEntity> findAll() {

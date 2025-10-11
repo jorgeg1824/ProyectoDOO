@@ -4,9 +4,15 @@ import java.util.List;
 import java.util.UUID;
 
 import co.edu.uco.nose.data.dao.entity.DepartmentDAO;
+import co.edu.uco.nose.data.dao.entity.SqlConnection;
 import co.edu.uco.nose.entity.DepartmentEntity;
 
-public final class DepartmentPosgresqlDAO implements DepartmentDAO {
+public final class DepartmentPosgresqlDAO extends SqlConnection implements DepartmentDAO {
+	
+	public DepartmentPosgresqlDAO(final java.sql.Connection connection) {
+		super(connection);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public List<DepartmentEntity> findAll() {
