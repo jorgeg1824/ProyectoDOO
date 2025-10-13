@@ -1,52 +1,44 @@
 package co.edu.uco.nose.entity;
 
-import jakarta.persistence.*;
 import java.util.UUID;
 
-@Entity
-@Table(name = "User")
+import co.edu.uco.nose.crosscuting.helper.BooleanHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
+
 public final class UserEntity {
 	
-	@Id
-	@Column(name = "id", nullable = false, updatable = false)
 	private UUID id;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "identification_type_id", nullable = false)
 	private IdentificationTypeEntity identificationType;
-	
-	@Column(name = "identification_number", nullable = false, length = 25, unique = true)
 	private String identificationNumber;
-	
-	@Column(name = "first_name", nullable = false, length = 20)
 	private String firstName;
-	
-	@Column(name = "middle_name", nullable = true, length = 20)
 	private String middleName;
-	
-	@Column(name = "last_name", nullable = false, length = 20)
 	private String lastName;
-	
-	@Column(name = "second_last_name", nullable = true, length = 20)
 	private String secondLastName;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "city_id", nullable = false)
 	private CityEntity residenceCity;
-	
-	@Column(name = "email", nullable = false, length = 250, unique = true)
 	private String email;
-	
-	@Column(name = "phone", nullable = true, length = 20)
 	private String phone;
-	
-	@Column(name = "email_confirmed", nullable = false)
 	private boolean emailConfirmed;
-	
-	@Column(name = "phone_confirmed", nullable = false)
 	private boolean phoneConfirmed;
+	private boolean emailConfirmedIsDefaultValue;
+	private boolean phoneConfirmedIsDefaultValue;
 	
 	public UserEntity() {
+		setId(UUIDHelper.getUUIDHelper().getDefault());
+		setIdentificationType(new IdentificationTypeEntity());
+		setIdentificationNumber(TextHelper.getDefault());
+		setFirstName(TextHelper.getDefault());
+		setMiddleName(TextHelper.getDefault());
+		setLastName(TextHelper.getDefault());
+		setSecondLastName(TextHelper.getDefault());
+		setResidenceCity(new CityEntity());
+		setEmail(TextHelper.getDefault());
+		setPhone(TextHelper.getDefault());
+		setEmailConfirmed(false);
+		setEmailConfirmedIsDefaultValue(true);
+		setPhoneConfirmed(false);
+		setPhoneConfirmedIsDefaultValue(true);
 	}
 	
 	public UserEntity(final UUID id, 
@@ -80,7 +72,7 @@ public final class UserEntity {
 	}
 
 	public void setId(final UUID id) {
-		this.id = id;
+		this.id = UUIDHelper.getUUIDHelper().getDefault(id);
 	}
 
 	public IdentificationTypeEntity getIdentificationType() {
@@ -88,7 +80,7 @@ public final class UserEntity {
 	}
 
 	public void setIdentificationType(final IdentificationTypeEntity identificationType) {
-		this.identificationType = identificationType;
+		this.identificationType = ObjectHelper.getDefault(identificationType, new IdentificationTypeEntity());
 	}
 
 	public String getIdentificationNumber() {
@@ -96,7 +88,7 @@ public final class UserEntity {
 	}
 
 	public void setIdentificationNumber(final String identificationNumber) {
-		this.identificationNumber = identificationNumber;
+		this.identificationNumber = TextHelper.getDefaultWithTrim(identificationNumber);
 	}
 
 	public String getFirstName() {
@@ -104,7 +96,7 @@ public final class UserEntity {
 	}
 
 	public void setFirstName(final String firstName) {
-		this.firstName = firstName;
+		this.firstName = TextHelper.getDefaultWithTrim(firstName);
 	}
 
 	public String getMiddleName() {
@@ -112,7 +104,7 @@ public final class UserEntity {
 	}
 
 	public void setMiddleName(final String middleName) {
-		this.middleName = middleName;
+		this.middleName = TextHelper.getDefaultWithTrim(middleName);
 	}
 
 	public String getLastName() {
@@ -120,7 +112,7 @@ public final class UserEntity {
 	}
 
 	public void setLastName(final String lastName) {
-		this.lastName = lastName;
+		this.lastName = TextHelper.getDefaultWithTrim(lastName);
 	}
 
 	public String getSecondLastName() {
@@ -128,7 +120,7 @@ public final class UserEntity {
 	}
 
 	public void setSecondLastName(final String secondLastName) {
-		this.secondLastName = secondLastName;
+		this.secondLastName = TextHelper.getDefaultWithTrim(secondLastName);
 	}
 
 	public CityEntity getResidenceCity() {
@@ -136,7 +128,7 @@ public final class UserEntity {
 	}
 
 	public void setResidenceCity(final CityEntity residenceCity) {
-		this.residenceCity = residenceCity;
+		this.residenceCity = ObjectHelper.getDefault(residenceCity, new CityEntity());
 	}
 
 	public String getEmail() {
@@ -144,7 +136,7 @@ public final class UserEntity {
 	}
 
 	public void setEmail(final String email) {
-		this.email = email;
+		this.email = TextHelper.getDefaultWithTrim(email);
 	}
 
 	public String getPhone() {
@@ -152,7 +144,7 @@ public final class UserEntity {
 	}
 
 	public void setPhone(final String phone) {
-		this.phone = phone;
+		this.phone = TextHelper.getDefaultWithTrim(phone);
 	}
 
 	public boolean isEmailConfirmed() {
@@ -160,7 +152,8 @@ public final class UserEntity {
 	}
 
 	public void setEmailConfirmed(final boolean emailConfirmed) {
-		this.emailConfirmed = emailConfirmed;
+		this.emailConfirmed = BooleanHelper.getDefault(emailConfirmed);
+		setEmailConfirmedIsDefaultValue(false);
 	}
 
 	public boolean isPhoneConfirmed() {
@@ -169,6 +162,23 @@ public final class UserEntity {
 
 	public void setPhoneConfirmed(final boolean phoneConfirmed) {
 		this.phoneConfirmed = phoneConfirmed;
+		setPhoneConfirmedIsDefaultValue(false);
+	}
+
+	public boolean isEmailConfirmedIsDefaultValue() {
+		return emailConfirmedIsDefaultValue;
+	}
+
+	private void setEmailConfirmedIsDefaultValue(boolean emailConfirmedIsDefaultValue) {
+		this.emailConfirmedIsDefaultValue = emailConfirmedIsDefaultValue;
+	}
+
+	public boolean isPhoneConfirmedIsDefaultValue() {
+		return phoneConfirmedIsDefaultValue;
+	}
+
+	private void setPhoneConfirmedIsDefaultValue(boolean phoneConfirmedIsDefaultValue) {
+		this.phoneConfirmedIsDefaultValue = phoneConfirmedIsDefaultValue;
 	}
 	
 }
