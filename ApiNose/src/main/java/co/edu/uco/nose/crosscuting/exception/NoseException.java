@@ -2,6 +2,7 @@ package co.edu.uco.nose.crosscuting.exception;
 
 import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
 import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.messagescatalog.MessagesEnum;
 
 public final class NoseException extends RuntimeException {
 
@@ -27,6 +28,10 @@ public final class NoseException extends RuntimeException {
 	public static NoseException create(final Throwable rootException, final String userMessage, final String technicalMessage) {
 		return new NoseException(rootException, userMessage, technicalMessage);
 	}
+	
+    public static NoseException createDaoException(final Exception e, final MessagesEnum userMsg, final MessagesEnum techMsg) {
+        return NoseException.create(e, userMsg.getContent(), techMsg.getContent());
+    }
 	
 	public Throwable getRootException() {
 		return rootException;

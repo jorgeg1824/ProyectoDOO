@@ -6,13 +6,14 @@ public final class CityDTO {
 	
 	private UUID id;
 	private String name;
+	private DepartmentDTO department;
 	
 	public CityDTO() {
 		this.id = null;
 		this.name = "";
 	}
 	
-	public CityDTO(final UUID id, final String name) {
+	public CityDTO(final UUID id, final String name, final DepartmentDTO department) {
 		this.id = id;
 		this.name = name;
 	}
@@ -31,6 +32,14 @@ public final class CityDTO {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public DepartmentDTO getDepartment() {
+		return department;
+	}
+	
+	public void setDepartment(DepartmentDTO department) {
+		this.department = department;
 	}
 
 }

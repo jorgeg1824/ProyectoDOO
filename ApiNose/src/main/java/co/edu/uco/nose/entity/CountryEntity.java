@@ -1,20 +1,18 @@
 package co.edu.uco.nose.entity;
 
-import jakarta.persistence.*;
 import java.util.UUID;
 
-@Entity
-@Table(name = "Country")
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
+
 public final class CountryEntity {
-	
-	@Id
-	@Column(name = "name", nullable = false, updatable = false)
+
 	private UUID id;
-	
-	@Column(name = "name", nullable = false, length = 50)
 	private String name;
 	
 	public CountryEntity() {
+		setId(UUIDHelper.getUUIDHelper().getDefault());
+		setName(TextHelper.getDefault());
 	}
 	
 	public CountryEntity(final UUID id, final String name) {
@@ -27,7 +25,7 @@ public final class CountryEntity {
 	}
 
 	public void setId(final UUID id) {
-		this.id = id;
+		this.id = UUIDHelper.getUUIDHelper().getDefault(id);
 	}
 
 	public String getName() {
@@ -35,7 +33,7 @@ public final class CountryEntity {
 	}
 
 	public void setName(final String name) {
-		this.name = name;
+		this.name = TextHelper.getDefaultWithTrim(name);
 	}
 
 }

@@ -1,24 +1,21 @@
 package co.edu.uco.nose.entity;
 
-import jakarta.persistence.*;
 import java.util.UUID;
 
-@Entity
-@Table(name = "City")
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
+
 public class CityEntity {
 	
-	@Id
-	@Column(name = "id", nullable = false, updatable = false)
 	private UUID id;
-	
-	@Column(name = "name", nullable = false, length = 50)
 	private String name;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "department_id", nullable = false)
 	private DepartmentEntity department;
 	
 	public CityEntity() {
+		setId(UUIDHelper.getUUIDHelper().getDefault());
+		setName(TextHelper.getDefault());
+		setDepartment(new DepartmentEntity());
 	}
 	
 	public CityEntity(final UUID id, final String name, final DepartmentEntity department) {
@@ -32,7 +29,7 @@ public class CityEntity {
 	}
 
 	public void setId(final UUID id) {
-		this.id = id;
+		this.id = UUIDHelper.getUUIDHelper().getDefault(id);
 	}
 
 	public String getName() {
@@ -40,7 +37,7 @@ public class CityEntity {
 	}
 
 	public void setName(final String name) {
-		this.name = name;
+		this.name = TextHelper.getDefaultWithTrim(name);
 	}
 
 	public DepartmentEntity getDepartment() {
@@ -48,6 +45,6 @@ public class CityEntity {
 	}
 
 	public void setDepartment(final DepartmentEntity department) {
-		this.department = department;
+		this.department = ObjectHelper.getDefault(department, new DepartmentEntity());
 	}
 }

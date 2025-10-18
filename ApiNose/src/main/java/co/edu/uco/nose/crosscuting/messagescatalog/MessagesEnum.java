@@ -211,7 +211,39 @@ public enum MessagesEnum {
 
 	TECHNICAL_ERROR_DAO_UNEXPECTED_ERROR_FINDING_USER_BY_ID("Error inesperado consultando el usuario por su identificador",
 	        "Se presentó un error no controlado de tipo Exception al tratar de ejecutar el proceso de consulta de un usuario por su identificador en la base de datos."
-	        + " Por favor valide la consola de errores para revisar con detalle el problema presentado");
+	        + " Por favor valide la consola de errores para revisar con detalle el problema presentado"),
+	
+	USER_ERROR_DAO_FINDING_ALL_USERS("Problema consultando los usuarios",
+	        "Se ha presentado un problema tratando de consultar la información de los usuarios. "
+	        + "Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_DAO_FINDING_ALL_USERS("Error consultando los usuarios",
+	        "Se presentó un error de tipo SQLException al tratar de ejecutar el proceso de consulta de usuarios. "
+	        + "Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_DAO_UNEXPECTED_ERROR_FINDING_ALL_USERS("Error inesperado consultando los usuarios",
+	        "Se presentó un problema inesperado tratando de consultar la información de los usuarios. "
+	        + "Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_DAO_UNEXPECTED_ERROR_FINDING_ALL_USERS("Error inesperado consultando los usuarios",
+	        "Se presentó un error no controlado de tipo Exception al tratar de ejecutar el proceso de consulta de usuarios. "
+	        + "Por favor valide la consola de errores para revisar con detalle el problema presentado"),
+	
+	USER_ERROR_DAO_FINDING_USER_BY_FILTER("Problema consultando los usuarios por filtro",
+	        "Se ha presentado un problema tratando de consultar la información de los usuarios según los criterios indicados. "
+	        + "Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_DAO_FINDING_USER_BY_FILTER("Error consultando los usuarios por filtro",
+	        "Se presentó un error de tipo SQLException al tratar de ejecutar el proceso de consulta de usuarios filtrados. "
+	        + "Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_DAO_UNEXPECTED_ERROR_FINDING_USER_BY_FILTER("Error inesperado consultando los usuarios por filtro",
+	        "Se presentó un problema inesperado tratando de consultar la información de los usuarios según los criterios indicados. "
+	        + "Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_DAO_UNEXPECTED_ERROR_FINDING_USER_BY_FILTER("Error inesperado consultando los usuarios por filtro",
+	        "Se presentó un error no controlado de tipo Exception al tratar de ejecutar el proceso de consulta de usuarios filtrados. "
+	        + "Por favor valide la consola de errores para revisar con detalle el problema presentado");
 	
 	private String title;
 	private String content;

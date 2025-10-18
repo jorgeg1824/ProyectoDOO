@@ -1,24 +1,20 @@
 package co.edu.uco.nose.entity;
 
-import jakarta.persistence.*;
 import java.util.UUID;
 
-@Entity
-@Table(name = "Department")
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
+
 public final class DepartmentEntity {
-	
-	@Id
-	@Column(name = "id", nullable = false, updatable = false)
+
 	private UUID id;
-	
-	@Column(name = "name", nullable = false, length = 50)
 	private String name;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "country_id", nullable = false)
 	private CountryEntity country;
 	
 	public DepartmentEntity() {
+		setId(UUIDHelper.getUUIDHelper().getDefault());
+		setName(TextHelper.getDefault());
 	}
 	
 	public DepartmentEntity(final UUID id, final String name, final CountryEntity country) {
@@ -32,7 +28,7 @@ public final class DepartmentEntity {
 	}
 
 	public void setId(final UUID id) {
-		this.id = id;
+		this.id = UUIDHelper.getUUIDHelper().getDefault(id);
 	}
 
 	public String getName() {
@@ -40,7 +36,7 @@ public final class DepartmentEntity {
 	}
 
 	public void setName(final String name) {
-		this.name = name;
+		this.name = TextHelper.getDefaultWithTrim(name);
 	}
 
 	public CountryEntity getCountry() {
@@ -48,7 +44,7 @@ public final class DepartmentEntity {
 	}
 	
 	public void setCountry(final CountryEntity country) {
-		this.country = country;
+		this.country = ObjectHelper.getDefault(country, new CountryEntity());
 	}
 	
 }

@@ -1,5 +1,6 @@
 package co.edu.uco.nose.data.dao.entity.postgresql;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,7 +10,7 @@ import co.edu.uco.nose.entity.DepartmentEntity;
 
 public final class DepartmentPosgresqlDAO extends SqlConnection implements DepartmentDAO {
 	
-	public DepartmentPosgresqlDAO(final java.sql.Connection connection) {
+	public DepartmentPosgresqlDAO(final Connection connection) {
 		super(connection);
 		// TODO Auto-generated constructor stub
 	}
