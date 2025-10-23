@@ -13,13 +13,23 @@ import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 import co.edu.uco.nose.dto.UserDTO;
 
 public final class UserDTOAssembler implements DTOAssembler<UserDTO, UserDomain>{
+	
+	private static final DTOAssembler<UserDTO, UserDomain> instance =
+			new UserDTOAssembler();
+	
+	private UserDTOAssembler() {
+	}
+	
+	public static DTOAssembler<UserDTO, UserDomain> getUserDTOAssembler(){
+		return instance;
+	}
 
 	@Override
 	public UserDTO toDTO(UserDomain domain) {
 		var domainTmp = ObjectHelper.getDefault(domain, new UserDomain(UUIDHelper.getUUIDHelper().getDefault()));
 		var cityDtoTmp = getCityDTOAssembler().toDTO(domainTmp.getResidenceCity());
-		var identificationTypeTmp = getIdentificationTypeDTOAssembler().toDTO(domain.getIdentificationType());
-		return new UserDTO(domainTmp.getId(), identificationTypeTmp, domainTmp.getIdentificationNumber(), domainTmp.getFirstName(), domainTmp.getMiddleName(),
+		var identificationTypeDtoTmp = getIdentificationTypeDTOAssembler().toDTO(domain.getIdentificationType());
+		return new UserDTO(domainTmp.getId(), identificationTypeDtoTmp, domainTmp.getIdentificationNumber(), domainTmp.getFirstName(), domainTmp.getMiddleName(),
 				domainTmp.getLastName(), domainTmp.getSecondLastName(), cityDtoTmp, domainTmp.getEmail(), domainTmp.getPhone(), domainTmp.isEmailConfirmed(),
 				domainTmp.isPhoneConfirmed());
 	}
@@ -35,7 +45,7 @@ public final class UserDTOAssembler implements DTOAssembler<UserDTO, UserDomain>
 	}
 
 	@Override
-	public List<UserDTO> toDTO(List<UserDomain> domainList) {
+	public List<UserDTO> toDTO(final List<UserDomain> domainList) {
 		var userDtoList = new ArrayList<UserDTO>();
 		
 		for (var userDomain : domainList) {

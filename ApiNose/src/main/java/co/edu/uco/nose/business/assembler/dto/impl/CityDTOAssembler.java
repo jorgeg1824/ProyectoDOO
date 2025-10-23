@@ -33,8 +33,8 @@ public final class CityDTOAssembler implements DTOAssembler<CityDTO, CityDomain>
 	@Override
 	public CityDomain toDomain(CityDTO dto) {
 		var dtoTmp = ObjectHelper.getDefault(dto, new CityDTO());
-		var countryDomainTmp = getDepartmentDTOAssembler().toDomain(dtoTmp.getDepartment());
-		return new CityDomain(dtoTmp.getId(), dtoTmp.getName(), countryDomainTmp);
+		var departmentDomainTmp = getDepartmentDTOAssembler().toDomain(dtoTmp.getDepartment());
+		return new CityDomain(dtoTmp.getId(), dtoTmp.getName(), departmentDomainTmp);
 	}
 
 	@Override

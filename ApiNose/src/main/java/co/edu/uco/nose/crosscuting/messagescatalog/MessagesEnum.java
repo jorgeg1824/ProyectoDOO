@@ -243,7 +243,15 @@ public enum MessagesEnum {
 
 	TECHNICAL_ERROR_DAO_UNEXPECTED_ERROR_FINDING_USER_BY_FILTER("Error inesperado consultando los usuarios por filtro",
 	        "Se presentó un error no controlado de tipo Exception al tratar de ejecutar el proceso de consulta de usuarios filtrados. "
-	        + "Por favor valide la consola de errores para revisar con detalle el problema presentado");
+	        + "Por favor valide la consola de errores para revisar con detalle el problema presentado"),
+	
+	USER_ERROR_FACADE_REGISTERING_USER("Problema inesperado registrando la información del nuevo usuario",
+			"Se ha presentado un problema inesperado registrando la información del nuevo usuario. "
+			+ "Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+	
+	TECHNICAL_ERROR_FACADE_REGISTERING_USER("Error inesperado registrando la información del nuevo usuario",
+			"Se presentó un error no controlado de tipo Exception tratando de registrar la información del nuevo usuario en la capa facade."
+			+ "Por favor valide la consola de errores para revisar con detalle el problema presentado.");
 	
 	private String title;
 	private String content;

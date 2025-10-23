@@ -68,11 +68,11 @@ public final class UserSqlBuilder {
 
         if (ObjectHelper.isNull(filter)) return sql.toString();
 
-        if (!UUIDHelper.getUUIDHelper().isDefault(filter.getId())) {
+        if (!UUIDHelper.getUUIDHelper().isDefaultUUID(filter.getId())) {
             sql.append(" AND u.id = ? ");
             params.add(filter.getId());
         }
-        if (filter.getIdentificationType() != null && !UUIDHelper.getUUIDHelper().isDefault(filter.getIdentificationType().getId())) {
+        if (filter.getIdentificationType() != null && !UUIDHelper.getUUIDHelper().isDefaultUUID(filter.getIdentificationType().getId())) {
             sql.append(" AND u.tipoIdentificacion = ? ");
             params.add(filter.getIdentificationType().getId());
         }
@@ -88,7 +88,7 @@ public final class UserSqlBuilder {
             sql.append(" AND LOWER(u.primerApellido) LIKE LOWER(?) ");
             params.add("%" + filter.getLastName() + "%");
         }
-        if (filter.getResidenceCity() != null && !UUIDHelper.getUUIDHelper().isDefault(filter.getResidenceCity().getId())) {
+        if (filter.getResidenceCity() != null && !UUIDHelper.getUUIDHelper().isDefaultUUID(filter.getResidenceCity().getId())) {
             sql.append(" AND u.ciudadResidencia = ? ");
             params.add(filter.getResidenceCity().getId());
         }
