@@ -68,6 +68,7 @@ public final class UserPostgresqlDAO extends SqlConnection implements UserDAO {
     public List<UserEntity> findByFilter(final UserEntity filter) {
         final var params = new ArrayList<Object>();
         final var sql = sqlBuilder.buildSelectByFilter(filter, params);
+
         final var users = new ArrayList<UserEntity>();
 
         try (var ps = getConnection().prepareStatement(sql)) {
@@ -80,6 +81,7 @@ public final class UserPostgresqlDAO extends SqlConnection implements UserDAO {
             }
 
         } catch (SQLException e) {
+            e.printStackTrace(); // 👈 para ver el mensaje SQL real
             throw NoseException.createDaoException(e,
                     MessagesEnum.USER_ERROR_DAO_FINDING_USER_BY_FILTER,
                     MessagesEnum.TECHNICAL_ERROR_DAO_FINDING_USER_BY_FILTER);
@@ -87,6 +89,7 @@ public final class UserPostgresqlDAO extends SqlConnection implements UserDAO {
 
         return users;
     }
+
 
     @Override
     public UserEntity findById(final UUID id) {

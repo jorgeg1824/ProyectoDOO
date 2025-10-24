@@ -11,11 +11,11 @@ public final class UserSqlBuilder {
 
     public String buildInsert() {
         return """
-            INSERT INTO Usuario (
-                id, tipoIdentificacion, numeroIdentificacion,
-                primerNombre, segundoNombre, primerApellido, segundoApellido,
-                ciudadResidencia, correoElectronico, numeroTelefonoMovil,
-                correoElectronicoConfirmado, numeroTelefonoMovilConfirmado
+            INSERT INTO public."Usuario" (
+                "id", "tipoIdentificacion", "numeroIdentificacion",
+                "primerNombre", "segundoNombre", "primerApellido", "segundoApellido",
+                "ciudadResidencia", "correoElectronico", "numeroTelefonoMovil",
+                "correoElectronicoConfirmado", "numeroTelefonoMovilConfirmado"
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
@@ -23,34 +23,34 @@ public final class UserSqlBuilder {
 
     public String buildUpdate() {
         return """
-            UPDATE Usuario
-               SET tipoIdentificacion = ?, numeroIdentificacion = ?,
-                   primerNombre = ?, segundoNombre = ?, primerApellido = ?, segundoApellido = ?,
-                   ciudadResidencia = ?, correoElectronico = ?, numeroTelefonoMovil = ?,
-                   correoElectronicoConfirmado = ?, numeroTelefonoMovilConfirmado = ?
-             WHERE id = ?
+            UPDATE public."Usuario"
+               SET "tipoIdentificacion" = ?, "numeroIdentificacion" = ?,
+                   "primerNombre" = ?, "segundoNombre" = ?, "primerApellido" = ?, "segundoApellido" = ?,
+                   "ciudadResidencia" = ?, "correoElectronico" = ?, "numeroTelefonoMovil" = ?,
+                   "correoElectronicoConfirmado" = ?, "numeroTelefonoMovilConfirmado" = ?
+             WHERE "id" = ?
         """;
     }
 
     public String buildDelete() {
-        return "DELETE FROM Usuario WHERE id = ?";
+        return "DELETE FROM public.\"Usuario\" WHERE \"id\" = ?";
     }
 
     private String buildBaseSelect() {
         return """
-            SELECT  u.id,
-                    ti.id AS idTipoIdentificacion, ti.nombre AS nombreTipoIdentificacion,
-                    u.numeroIdentificacion, u.primerNombre, u.segundoNombre, u.primerApellido, u.segundoApellido,
-                    c.id AS idCiudadResidencia, c.nombre AS nombreCiudadResidencia,
-                    d.id AS idDepartamentoCiudadResidencia, d.nombre AS nombreDepartamentoCiudadResidencia,
-                    p.id AS idPaisDepartamentoCiudadResidencia, p.nombre AS nombrePaisDepartamentoCiudadResidencia,
-                    u.correoElectronico, u.numeroTelefonoMovil,
-                    u.correoElectronicoConfirmado, u.numeroTelefonoMovilConfirmado
-              FROM Usuario AS u
-         INNER JOIN TipoIdentificacion AS ti ON u.tipoIdentificacion = ti.id
-         INNER JOIN Ciudad AS c ON u.ciudadResidencia = c.id
-         INNER JOIN Departamento AS d ON c.departamento = d.id
-         INNER JOIN Pais AS p ON d.pais = p.id
+            SELECT  u."id",
+                    ti."id" AS "idTipoIdentificacion", ti."nombre" AS "nombreTipoIdentificacion",
+                    u."numeroIdentificacion", u."primerNombre", u."segundoNombre", u."primerApellido", u."segundoApellido",
+                    c."id" AS "idCiudadResidencia", c."nombre" AS "nombreCiudadResidencia",
+                    d."id" AS "idDepartamentoCiudadResidencia", d."nombre" AS "nombreDepartamentoCiudadResidencia",
+                    p."id" AS "idPaisDepartamentoCiudadResidencia", p."nombre" AS "nombrePaisDepartamentoCiudadResidencia",
+                    u."correoElectronico", u."numeroTelefonoMovil",
+                    u."correoElectronicoConfirmado", u."numeroTelefonoMovilConfirmado"
+              FROM public."Usuario" AS u
+         LEFT JOIN public."TipoIdentificacion" AS ti ON u."tipoIdentificacion" = ti."id"
+         LEFT JOIN public."Ciudad" AS c ON u."ciudadResidencia" = c."id"
+         LEFT JOIN public."Departamento" AS d ON c."departamento" = d."id"
+         LEFT JOIN public."Pais" AS p ON d."pais" = p."id"
         """;
     }
 
@@ -59,7 +59,7 @@ public final class UserSqlBuilder {
     }
 
     public String buildSelectById() {
-        return buildBaseSelect() + " WHERE u.id = ?";
+        return buildBaseSelect() + " WHERE u.\"id\" = ?";
     }
 
     public String buildSelectByFilter(final UserEntity filter, final List<Object> params) {
@@ -69,31 +69,31 @@ public final class UserSqlBuilder {
         if (ObjectHelper.isNull(filter)) return sql.toString();
 
         if (!UUIDHelper.getUUIDHelper().isDefaultUUID(filter.getId())) {
-            sql.append(" AND u.id = ? ");
+            sql.append(" AND u.\"id\" = ? ");
             params.add(filter.getId());
         }
         if (filter.getIdentificationType() != null && !UUIDHelper.getUUIDHelper().isDefaultUUID(filter.getIdentificationType().getId())) {
-            sql.append(" AND u.tipoIdentificacion = ? ");
+            sql.append(" AND u.\"tipoIdentificacion\" = ? ");
             params.add(filter.getIdentificationType().getId());
         }
         if (!TextHelper.isEmpty(filter.getIdentificationNumber())) {
-            sql.append(" AND u.numeroIdentificacion = ? ");
+            sql.append(" AND u.\"numeroIdentificacion\" = ? ");
             params.add(filter.getIdentificationNumber());
         }
         if (!TextHelper.isEmpty(filter.getFirstName())) {
-            sql.append(" AND LOWER(u.primerNombre) LIKE LOWER(?) ");
+            sql.append(" AND LOWER(u.\"primerNombre\") LIKE LOWER(?) ");
             params.add("%" + filter.getFirstName() + "%");
         }
         if (!TextHelper.isEmpty(filter.getLastName())) {
-            sql.append(" AND LOWER(u.primerApellido) LIKE LOWER(?) ");
+            sql.append(" AND LOWER(u.\"primerApellido\") LIKE LOWER(?) ");
             params.add("%" + filter.getLastName() + "%");
         }
         if (filter.getResidenceCity() != null && !UUIDHelper.getUUIDHelper().isDefaultUUID(filter.getResidenceCity().getId())) {
-            sql.append(" AND u.ciudadResidencia = ? ");
+            sql.append(" AND u.\"ciudadResidencia\" = ? ");
             params.add(filter.getResidenceCity().getId());
         }
         if (!TextHelper.isEmpty(filter.getEmail())) {
-            sql.append(" AND LOWER(u.correoElectronico) LIKE LOWER(?) ");
+            sql.append(" AND LOWER(u.\"correoElectronico\") LIKE LOWER(?) ");
             params.add("%" + filter.getEmail() + "%");
         }
 

@@ -1,6 +1,8 @@
 package co.edu.uco.nose.data.dao.entity.postgresql;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,9 +18,26 @@ public final class CountryPostgresqlDAO extends SqlConnection implements Country
 
 	@Override
 	public List<CountryEntity> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	    var countries = new ArrayList<CountryEntity>();
+	    String sql = "SELECT id, nombre FROM public.\"Pais\"";
+
+	    try (var preparedStatement = getConnection().prepareStatement(sql);
+	         var resultSet = preparedStatement.executeQuery()) {
+
+	        while (resultSet.next()) {
+	            var country = new CountryEntity();
+	            country.setId((UUID) resultSet.getObject("id"));
+	            country.setName(resultSet.getString("nombre"));
+	            countries.add(country);
+	        }
+
+	    } catch (SQLException exception) {
+	        exception.printStackTrace();
+	    }
+
+	    return countries;
 	}
+
 
 	@Override
 	public List<CountryEntity> findByFilter(CountryEntity filterEntity) {
