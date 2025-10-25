@@ -81,7 +81,6 @@ public final class UserPostgresqlDAO extends SqlConnection implements UserDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace(); // 👈 para ver el mensaje SQL real
             throw NoseException.createDaoException(e,
                     MessagesEnum.USER_ERROR_DAO_FINDING_USER_BY_FILTER,
                     MessagesEnum.TECHNICAL_ERROR_DAO_FINDING_USER_BY_FILTER);

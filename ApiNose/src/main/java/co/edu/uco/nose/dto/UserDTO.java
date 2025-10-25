@@ -2,6 +2,9 @@ package co.edu.uco.nose.dto;
 
 import java.util.UUID;
 
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
+
 public final class UserDTO {
 	
 	private UUID id;
@@ -18,8 +21,8 @@ public final class UserDTO {
 	private boolean phoneConfirmed;
 	
 	public UserDTO() {
-		this.id = null;
-		this.identificationType = new IdentificationTypeDTO();
+		this.id = UUIDHelper.getUUIDHelper().getDefault();
+		this.identificationType = new IdentificationTypeDTO(UUIDHelper.getUUIDHelper().getDefault(), TextHelper.getDefault());
 		this.identificationNumber = "";
 		this.firstName = "";
 		this.middleName = "";
