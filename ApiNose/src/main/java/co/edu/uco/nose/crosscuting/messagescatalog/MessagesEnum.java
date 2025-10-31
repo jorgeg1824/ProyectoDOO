@@ -251,7 +251,79 @@ public enum MessagesEnum {
 	
 	TECHNICAL_ERROR_FACADE_REGISTERING_USER("Error inesperado registrando la información del nuevo usuario",
 			"Se presentó un error no controlado de tipo Exception tratando de registrar la información del nuevo usuario en la capa facade."
-			+ "Por favor valide la consola de errores para revisar con detalle el problema presentado.");
+			+ "Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+	
+	USER_ERROR_FACADE_DELETING_USER("Problema inesperado eliminando la información del usuario",
+			"Se ha presentado un problema inesperado tratando de eliminar la información del usuario desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_DELETING_USER("Error inesperado eliminando la información del usuario",
+			"Se presentó un error no controlado de tipo Exception tratando de eliminar la información del usuario desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_FACADE_UPDATING_USER("Problema inesperado actualizando la información del usuario",
+			"Se ha presentado un problema inesperado tratando de actualizar la información del usuario desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_UPDATING_USER("Error inesperado actualizando la información del usuario",
+			"Se presentó un error no controlado de tipo Exception tratando de actualizar la información del usuario desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_FACADE_FINDING_ALL_USERS("Problema inesperado consultando los usuarios desde la capa facade",
+			"Se presentó un problema inesperado tratando de consultar la información de los usuarios desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_FINDING_ALL_USERS("Error inesperado consultando los usuarios desde la capa facade",
+			"Se presentó un error no controlado de tipo Exception tratando de consultar la información de los usuarios desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_FACADE_FINDING_USER_BY_FILTER("Problema inesperado consultando los usuarios por filtro desde la capa facade",
+			"Se presentó un problema inesperado tratando de consultar la información de los usuarios según criterios desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_FINDING_USER_BY_FILTER("Error inesperado consultando los usuarios por filtro desde la capa facade",
+			"Se presentó un error no controlado de tipo Exception tratando de consultar la información de los usuarios por filtro desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_FACADE_FINDING_USER_BY_ID("Problema inesperado consultando el usuario por identificador desde la capa facade",
+			"Se presentó un problema inesperado tratando de consultar la información del usuario por su identificador desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_FINDING_USER_BY_ID("Error inesperado consultando el usuario por identificador desde la capa facade",
+			"Se presentó un error no controlado de tipo Exception tratando de consultar la información del usuario por su identificador desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_FACADE_CONFIRMING_PHONE_NUMBER("Problema inesperado confirmando el número telefónico del usuario",
+			"Se ha presentado un problema inesperado tratando de confirmar el número telefónico del usuario desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_CONFIRMING_PHONE_NUMBER("Error inesperado confirmando el número telefónico del usuario",
+			"Se presentó un error no controlado de tipo Exception tratando de confirmar el número telefónico del usuario desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_FACADE_CONFIRMING_EMAIL("Problema inesperado confirmando el correo electrónico del usuario",
+			"Se ha presentado un problema inesperado tratando de confirmar el correo electrónico del usuario desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_CONFIRMING_EMAIL("Error inesperado confirmando el correo electrónico del usuario",
+			"Se presentó un error no controlado de tipo Exception tratando de confirmar el correo electrónico del usuario desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_FACADE_SENDING_PHONE_CONFIRMATION("Problema inesperado enviando la confirmación del número telefónico",
+			"Se ha presentado un problema inesperado tratando de enviar la confirmación del número telefónico al usuario desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_SENDING_PHONE_CONFIRMATION("Error inesperado enviando la confirmación del número telefónico",
+			"Se presentó un error no controlado de tipo Exception tratando de enviar la confirmación del número telefónico al usuario desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado."),
+
+	USER_ERROR_FACADE_SENDING_EMAIL_CONFIRMATION("Problema inesperado enviando la confirmación del correo electrónico",
+			"Se ha presentado un problema inesperado tratando de enviar la confirmación del correo electrónico al usuario desde la capa facade."
+			+ " Por favor intente de nuevo y si el problema persiste, contacte al administrador de la aplicación."),
+
+	TECHNICAL_ERROR_FACADE_SENDING_EMAIL_CONFIRMATION("Error inesperado enviando la confirmación del correo electrónico",
+			"Se presentó un error no controlado de tipo Exception tratando de enviar la confirmación del correo electrónico al usuario desde la capa facade."
+			+ " Por favor valide la consola de errores para revisar con detalle el problema presentado.");
 	
 	private String title;
 	private String content;
